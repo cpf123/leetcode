@@ -1,5 +1,7 @@
 package 树;
 
+import java.util.Stack;
+
 public class leetcode_98 {
     /**
      *
@@ -41,8 +43,8 @@ public class leetcode_98 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
-    //递归
-    public boolean isvalidBST(TreeNode node, Integer low, Integer up) {
+    //递归 false 为二叉树
+    public boolean recurse(TreeNode node, Integer low, Integer up) {
         if (node == null) {
             return true; // 空节点是二叉搜索树
         }
@@ -53,11 +55,29 @@ public class leetcode_98 {
         if (up != null && up < val) {
             return false;
         }
-        if(!isvalidBST(node.right,val,up)){ return false;}  //  将当前节点的值替换为下届 继续检查右边的子节点 是二叉树 则 !isBST(node.right,val,up)=false
-        if(!isvalidBST(node.left,low,val)){ return false;} // left <val  left> low (上级节点)
+        if(!recurse(node.right,val,up)){ return false;}  //  将当前节点的值替换为下届 继续检查右边的子节点 是二叉树 则 !isBST(node.right,val,up)=false
+        if(!recurse(node.left,low,val)){ return false;} // left <val  left> low (上级节点)
         return true;
     }
     // 中序遍历
+    public boolean  inorder(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        double tmp = -Double.MAX_VALUE;
+        while (!stack.isEmpty() || root != null) {
+
+            while (root != null) { // 最左边节点
+                stack.add(root);
+                root = root.left;
+            }
+
+            root = stack.pop();
+            if (root.val < tmp) return false; // 不是二叉树
+            tmp = root.val;
+            root = root.right;
+        }
+    return true;
+    }
+
 
 
 }
