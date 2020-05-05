@@ -43,7 +43,7 @@ public class leetcode_98 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
-    //递归 false 为二叉树
+    //递归 false 为二叉树 o(n) o(n)
     public boolean recurse(TreeNode node, Integer low, Integer up) {
         if (node == null) {
             return true; // 空节点是二叉搜索树
@@ -59,7 +59,7 @@ public class leetcode_98 {
         if(!recurse(node.left,low,val)){ return false;} // left <val  left> low (上级节点)
         return true;
     }
-    // 中序遍历
+    // 中序遍历 o(n) o(n)
     public boolean  inorder(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         double tmp = -Double.MAX_VALUE;
