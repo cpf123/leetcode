@@ -1,7 +1,10 @@
 package 树;
 
+import javafx.util.Pair;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class DeepOfBST {
     /**
@@ -20,7 +23,7 @@ public class DeepOfBST {
     //    树的层序遍历 / 广度优先搜索往往利用 队列 实现。
     // 变形的层序遍历
 
-    public int maxDepth(TreeNode root) {
+    public int maxdeep2(TreeNode root) {
         if (root == null) return 0;
         List<TreeNode> queue = new LinkedList<TreeNode>() {{
             add(root);
@@ -36,6 +39,27 @@ public class DeepOfBST {
             res++;
         }
         return res;
+    }
+
+    // 迭代 队列
+    public int maxdeep3(TreeNode root) {
+        Queue<Pair<TreeNode, Integer>> stack = new LinkedList<>();
+        if (root != null) {
+            stack.add(new Pair(root, 1));
+        }
+
+        int depth = 0;
+        while (!stack.isEmpty()) { // 边界条件
+            Pair<TreeNode, Integer> current = stack.poll();
+            root = current.getKey();
+            int current_depth = current.getValue();
+            if (root != null) {
+                depth = Math.max(depth, current_depth);
+                stack.add(new Pair(root.left, current_depth + 1));
+                stack.add(new Pair(root.right, current_depth + 1));
+            }
+        }
+        return depth;
     }
 
 }
