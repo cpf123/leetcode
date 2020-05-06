@@ -32,7 +32,7 @@ public class Traverse {
         System.out.println(head.val + " ");
     }
     
-    //层序遍历
+    //层序遍历 队列
     public void levelOrder1(TreeNode root) {
         if (root == null) {
             return;
@@ -52,11 +52,11 @@ public class Traverse {
         }
     }
 
-    //不用递归实现前序遍历
+    //不用递归实现前序遍历 栈
     public void preOrderUnRecur(TreeNode head) {
         System.out.print("前序遍历：");
         if (head != null) {
-//            Stack<TreeNode> stack = new Stack<>();
+
             java.util.Stack<TreeNode> stack = new java.util.Stack<>();
             stack.add(head);
             while (!stack.isEmpty()) {
@@ -73,11 +73,11 @@ public class Traverse {
         System.out.println();
     }
 
-    //不用递归实现中序遍历
+    //不用递归实现中序遍历 栈
     public void inOrderUnrecur(TreeNode head) {
         System.out.println("in-Order：");
         if (head != null) {
-//            Stack<TreeNode> stack = new Stack<>();
+
             java.util.Stack<TreeNode> stack = new java.util.Stack<>();
             while (!stack.isEmpty() || head != null) {
                 if (head != null) {
@@ -107,7 +107,7 @@ public class Traverse {
      *
      * @param head
      */
-    //不用递归实现后续遍历
+    //不用递归实现后续遍历 2 栈
     public void posOrderUnRecur(TreeNode head) {
         System.out.println("pos-order: ");
         if (head != null) {
